@@ -1,4 +1,4 @@
-
+#!/usr/bin/env python
 # coding: utf-8
 
 # # Facebook Message Analyzer
@@ -10,7 +10,7 @@
 #     <li> Average Word Count </li>
 # </ul>
 
-# In[5]:
+# In[1]:
 
 
 import os
@@ -25,12 +25,12 @@ MESSAGE_THRESHOLD = 10
 MESSAGE_BOUND = 1000
 
 
-# In[6]:
+# In[2]:
 
 
 def get_json_data(chat):
     try:
-        json_location = CURRENT_DIRECTORY + "/messages/" + chat + "/message.json"
+        json_location = CURRENT_DIRECTORY + "/messages/" + chat + "/message_1.json"
         with open(json_location) as json_file:
             json_data = json.load(json_file)
             return json_data
@@ -38,7 +38,7 @@ def get_json_data(chat):
         pass # some things the directory aren't messages (DS_Store, stickers_used, etc.)
 
 
-# In[7]:
+# In[3]:
 
 
 chats = os.listdir(CURRENT_DIRECTORY + "/messages/")[:NUMBER_TO_ANALYZE]
@@ -49,13 +49,13 @@ final_data_words = {}
 invalid_message_count = 0
 
 
-# In[9]:
+# In[4]:
 
 
 print('Analyzing ' + str(min(NUMBER_TO_ANALYZE, len(chats))) + ' chats...')
 
 for chat in chats:
-    url = chat + '/message.json'
+    url = chat + '/message_1.json'
     json_data = get_json_data(chat)
     print(chat)
     if json_data != None:
@@ -68,7 +68,7 @@ sorted_chats.sort(reverse=True)
 print('Finished processing chats...')
 
 
-# In[10]:
+# In[5]:
 
 
 for i, (messages, chat, messages) in enumerate(sorted_chats):
@@ -104,7 +104,7 @@ print('Found ' + str(invalid_message_count) + ' invalid messages...')
 print('Found ' + str(len(sorted_chats)) + ' chats with ' + str(MESSAGE_THRESHOLD) + ' messages or more')
 
 
-# In[12]:
+# In[6]:
 
 
 def plot_num_messages(chat_number):
@@ -151,5 +151,17 @@ def plot(chat_number):
 # In[ ]:
 
 
-plot(0)
+plot(2)
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
 
